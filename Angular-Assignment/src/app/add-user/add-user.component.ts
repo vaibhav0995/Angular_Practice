@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserModel } from 'src/models/userModel';
+import { UserLogService } from '../services/user-log.service';
 
 @Component({
   selector: 'app-add-user',
@@ -12,7 +13,9 @@ export class AddUserComponent implements OnInit {
   addUserForm: FormGroup;
   userDataList: UserModel[];
 
-  constructor() { }
+  constructor(
+    private _userLogService: UserLogService
+  ) { }
 
   ngOnInit() {
     this.userDataList = [];
@@ -34,6 +37,6 @@ export class AddUserComponent implements OnInit {
     this.userDataList.push(user);
     this.addUserForm.reset();
 
-    console.log('User data', this.userDataList);
+    this._userLogService.logMyDetail(user);
   }
 }
