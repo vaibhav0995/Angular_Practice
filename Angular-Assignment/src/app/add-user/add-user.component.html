@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Add User</h2>
+  <form [formGroup]='addUserForm'>
+    <div class="form-group">
+      <label>First Name</label>
+      <input formControlName="firstName" type='text' class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input formControlName="lastName" type='text' class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input formControlName="email" type='email' class="form-control">
+    </div>
+    <div>
+      <input formControlName="isActive" type='checkbox' name='Is Active' value='isActive'> Is Active
+    </div>
+
+    <div class="form-group mt-2">
+      <button class="btn btn-primary" [disabled]='!addUserForm.touched || addUserForm.invalid' (click)='addUser(addUserForm)'>Save</button>
+    </div>
+  </form>
+</div>
