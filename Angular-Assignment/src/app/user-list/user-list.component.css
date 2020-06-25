@@ -1,0 +1,12 @@
+.user-data-container {
+  display: flex;
+}
+
+.user-list-container {
+  width: 60%;
+  margin-right: 10px;
+}
+
+.user-details-container {
+  width: 40%;
+}
