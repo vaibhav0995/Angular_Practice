@@ -1,0 +1,10 @@
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="text-danger">
+    Errors are present in {{errorObj['error_field']}} !
+  </div>
+  <div>
+    <p>Meassage: {{errorObj['error_msg']}}</p>
+    <p>hint: {{errorObj['hint']}}</p>
+  </div>
+  <button class="btn btn-secondary" (click)='closeErrorPopUp()'>Cancel</button>
+</div>
