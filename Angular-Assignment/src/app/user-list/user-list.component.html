@@ -1,5 +1,6 @@
 <div class="user-data-container">
   <div class="user-list-container">
+    <button class="btn btn-primary mb-2" (click)='initializeUserListData()'>Refresh List</button>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,7 +14,8 @@
           <td>{{user.first_name}}</td>
           <td>{{user.email}}</td>
           <td>
-            <button class="btn btn-primary" (click)='showDetails(user)'>Show me</button>
+            <button class="btn btn-primary mr-2" (click)='showDetails(user.id)'>Show me</button>
+            <button class="btn btn-primary" (click)='deleteUser(user.id)'>Remove</button>
           </td>
         </tr>
       </tbody>

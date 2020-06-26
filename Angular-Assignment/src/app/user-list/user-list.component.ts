@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/models/userModel';
+import { UserLogService } from '../services/user-log.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +13,9 @@ export class UserListComponent implements OnInit {
   public showDetailsDiv: boolean;
   public selectedUser: UserModel;
 
-  constructor() { }
+  constructor(
+    private _userLogService: UserLogService
+  ) { }
 
   ngOnInit() {
     this.initializeUserListData();
@@ -20,19 +23,20 @@ export class UserListComponent implements OnInit {
 
   initializeUserListData(): void {
     this.userDataList = [];
-    for (let i = 1; i <= 5; i++) {
-      let userModelObj = new UserModel();
-      userModelObj.first_name = "User-" + i;
-      userModelObj.last_name = "last-name-" + i;
-      userModelObj.email = userModelObj.first_name + "@" + 'domain.com';
-      userModelObj.isActive = true;
-      this.userDataList.push(userModelObj);
-    }
+    this._userLogService.getUserList().subscribe(res => this.userDataList = res);
   }
 
-  showDetails(user: UserModel) {
-    this.selectedUser = user;
-    this.showDetailsDiv = true;
+  showDetails(id: number) {
+    this._userLogService.getUser(id).subscribe(res => {
+      this.selectedUser = res;
+      this.showDetailsDiv = true;
+    }, (error) => {console.log (error.error.message || 'error occured')});
+  }
+
+  deleteUser(id: number) {
+    this._userLogService.deleteUser(id).subscribe(res => {
+      this.initializeUserListData();
+    }, (error) => {console.log (error.error.message || 'error occured')});
   }
 
 }

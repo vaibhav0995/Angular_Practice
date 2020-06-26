@@ -37,6 +37,8 @@ export class AddUserComponent implements OnInit {
     this.userDataList.push(user);
     this.addUserForm.reset();
 
-    this._userLogService.logMyDetail(user);
+    // this._userLogService.logMyDetail(user);
+    this._userLogService.addUser(user).subscribe();
+    this._userLogService.getUserList().subscribe(res => console.log(res));
   }
 }
