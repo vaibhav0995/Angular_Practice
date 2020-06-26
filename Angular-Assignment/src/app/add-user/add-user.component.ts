@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserModel } from 'src/models/userModel';
 import { UserLogService } from '../services/user-log.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -14,7 +15,8 @@ export class AddUserComponent implements OnInit {
   userDataList: UserModel[];
 
   constructor(
-    private _userLogService: UserLogService
+    private _userLogService: UserLogService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class AddUserComponent implements OnInit {
     let userData = userForm.value;
     let user = new UserModel;
     user.first_name = userData.firstName;
-    user.last_name = userData.last_name;
+    user.last_name = userData.lastName;
     user.email = userData.email;
     user.isActive = (userData.isActive) ? true: false;
     this.userDataList.push(user);
@@ -39,6 +41,6 @@ export class AddUserComponent implements OnInit {
 
     // this._userLogService.logMyDetail(user);
     this._userLogService.addUser(user).subscribe();
-    this._userLogService.getUserList().subscribe(res => console.log(res));
+    this.route.navigate(['/user-list']);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from 'src/models/userModel';
 import { UserLogService } from '../services/user-log.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -14,7 +15,8 @@ export class UserListComponent implements OnInit {
   public selectedUser: UserModel;
 
   constructor(
-    private _userLogService: UserLogService
+    private _userLogService: UserLogService,
+    private route:Router
   ) { }
 
   ngOnInit() {
@@ -27,10 +29,7 @@ export class UserListComponent implements OnInit {
   }
 
   showDetails(id: number) {
-    this._userLogService.getUser(id).subscribe(res => {
-      this.selectedUser = res;
-      this.showDetailsDiv = true;
-    }, (error) => {console.log (error.error.message || 'error occured')});
+    this.route.navigate(['/user',id]);
   }
 
   deleteUser(id: number) {

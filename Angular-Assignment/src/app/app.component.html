@@ -3,14 +3,8 @@
   <h1 class='text-primary'>
     {{ title }}
   </h1>
+  <a routerLink='/user-list'>Home</a>
 </div>
-<div class='ml-2'>
-  <h3>Steps:</h3>
-  <p>1. install angular cli by "npm install -g @angular/cli".</p>
-  <p>2. create project by "ng new 'project-name'"</p>
-  <p>3. run by "npm start"</p>
-</div>
-<app-user-list></app-user-list>
-<app-add-user></app-add-user>
+<button class="btn btn-primary mb-2 mr-2" (click)="showAddUserComponent()">Add User</button>
 
 <router-outlet></router-outlet>

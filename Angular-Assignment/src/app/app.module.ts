@@ -9,12 +9,14 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryUserService } from './services/in-memory-web/in-memory-user.service';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    AddUserComponent
+    AddUserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
